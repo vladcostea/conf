@@ -4,10 +4,10 @@ import "testing"
 
 func TestDefaultProvider(t *testing.T) {
 	c := New(func(cfg *Config) {
-		cfg.AddProvider(NewDefaultProvider(map[string]string{
+		cfg.AddProvider(DefaultProvider{
 			"PARAM_1": "Value1",
 			"PARAM-2": "Value2",
-		}), map[string][]string{
+		}, map[string][]string{
 			"Param1": {"PARAM_1"},
 			"Param2": {"PARAM_2", "PARAM-2"},
 		})

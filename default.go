@@ -4,18 +4,10 @@ import "errors"
 
 var ErrMissingDefaultParam = errors.New("missing default")
 
-type DefaultProvider struct {
-	defaults map[string]string
-}
+type DefaultProvider map[string]string
 
-func NewDefaultProvider(d map[string]string) *DefaultProvider {
-	return &DefaultProvider{
-		defaults: d,
-	}
-}
-
-func (p *DefaultProvider) Param(key string) Param {
-	v, ok := p.defaults[key]
+func (p DefaultProvider) Param(key string) Param {
+	v, ok := p[key]
 	if !ok {
 		return Param{Err: ErrMissingDefaultParam}
 	}
